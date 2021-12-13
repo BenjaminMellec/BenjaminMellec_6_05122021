@@ -9,41 +9,30 @@ const getJson = async () => {
     });
 };
 
-function photographerFactory(data) {
-  const { name, portrait } = data;
-  const picture = `assets/photographers/${portrait}`;
-
-  function getUserCardDOM() {
-    const article = document.createElement("article");
-    const img = document.createElement("img");
-
-    img.setAttribute("src", picture);
-    const h2 = document.createElement("h2");
-    h2.textContent = name;
-    article.appendChild(img);
-    article.appendChild(h2);
-    return article;
+class Index {
+  constructor() {
+    this.photographersSection = document.querySelector(".photographer-section");
+    this.photographersApi = new PhotographersApi("data/photographers.json");
   }
-  return { name, picture, getUserCardDOM };
+
+  async main() {
+    // Ici je récupère mes films de mon fichier old-movie-data.json
+    const photographersData = await this.photographersApi.getPhotographers();
+    // const photographersData = await getJson().then((array) => {
+    //   return array.photographers;
+    // });
+
+    photographersData
+      // Ici, je transforme mon tableau de données en un tableau de classe Movie
+      .map((photographer) => new Photographer(photographer))
+      .forEach((photographer) => {
+        const Template = new PhotographerCard(photographer);
+        this.photographersSection.appendChild(
+          Template.createPhotographerCard()
+        );
+      });
+  }
 }
 
-async function displayData(array) {
-  const photographersSection = document.querySelector(".photographer_section");
-
-  array.forEach((photographer) => {
-    const photographerModel = photographerFactory(photographer);
-    const userCardDOM = photographerModel.getUserCardDOM();
-    photographersSection.appendChild(userCardDOM);
-  });
-}
-
-async function init() {
-  // Récupère les datas des photographes
-  let photographers;
-  await getJson().then((array) => {
-    photographers = array.photographers;
-    displayData(photographers);
-  });
-}
-
-init();
+const index = new Index();
+index.main();
