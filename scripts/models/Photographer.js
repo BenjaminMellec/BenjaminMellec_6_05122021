@@ -28,6 +28,6 @@ class Photographer {
     return this._price;
   }
   get portrait() {
-    return `/assets/photographers/${this._portrait}`;
+    return `assets/photographers/${this._portrait}`;
   }
 }
