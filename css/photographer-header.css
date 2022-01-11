@@ -6,9 +6,34 @@
   background: #fafafa;
   border-radius: 5px;
 }
-.photographer-header__infos {
+.photographer-header div {
+  width: 40%;
+}
+.photographer-header div:nth-child(2) {
+  width: 20%;
+}
+.photographer-header__infos-title {
+  font-size: 64px;
+  line-height: 83px;
+  color: var(--text-primary);
+}
+.photographer-header__infos-city {
+  margin-bottom: 19px;
+  font-size: 24px;
+  line-height: 31px;
+  color: var(--text-tertiary);
+}
+.photographer-header__infos-tagline {
+  font-size: 18px;
+  line-height: 23px;
+  color: var(--text-secondary);
+}
+.photographer-header__infos-title {
 }
 .photographer-header__avatar {
+  text-align: right;
+}
+.photographer-header__avatar img {
   width: 200px;
   height: 200px;
   border-radius: 50%;

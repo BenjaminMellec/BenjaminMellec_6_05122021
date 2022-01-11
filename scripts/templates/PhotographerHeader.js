@@ -9,20 +9,24 @@ class PhotographerHeader {
 
     const photographerHeader = `
         <div class="photographer-header__infos">
-          <h1>
+          <h1 class="photographer-header__infos-title">
             ${this._photographer.name}
           </h1>
-          <p>
+          <p class="photographer-header__infos-city">
             ${this._photographer.city}
           </p>
-          <p>
+          <p class="photographer-header__infos-tagline">
             ${this._photographer.tagline}
           </p>
         </div>
-        <button class="contact_button" onclick="displayModal()">
-          Contactez-moi
-        </button>
-        <img class="photographer-header__avatar" src="${this._photographer.portrait}">
+        <div class="photographer-header__contact">
+          <button class="button" onclick="displayModal()">
+            Contactez-moi
+          </button>
+        </div>
+        <div class="photographer-header__avatar">
+          <img src="${this._photographer.portrait}">
+        </div>
         `;
 
     headerSection.innerHTML = photographerHeader;

@@ -23,7 +23,7 @@ p {
 }
 
 h1 {
-  color: #901c1c;
+  color: var(--text-tertiary);
   margin-right: 100px;
 }
 
