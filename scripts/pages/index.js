@@ -1,20 +1,22 @@
 class Index {
   constructor() {
-    this.photographersSection = document.querySelector(".photographer-section");
+    this.mainSection = document.querySelector("#main");
     this.photographersApi = new PhotographersApi("data/photographers.json");
   }
 
   async main() {
     // Get photographers from photographers.json
     const photographersData = await this.photographersApi.getPhotographers();
+    const photographersSection = document.createElement("section");
+
+    photographersSection.classList.add("photographers-section");
 
     photographersData
-      .map((photographer) => new Photographer(photographer))
+      .map((photographer) => new PhotographerData(photographer))
       .forEach((photographer) => {
         const Template = new PhotographerCard(photographer);
-        this.photographersSection.appendChild(
-          Template.createPhotographerCard()
-        );
+        photographersSection.appendChild(Template.createPhotographerCard());
+        this.mainSection.appendChild(photographersSection);
       });
   }
 }
