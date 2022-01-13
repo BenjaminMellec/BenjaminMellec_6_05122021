@@ -1,0 +1,66 @@
+.photographers-section {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin: 100px -35px;
+  flex-wrap: wrap;
+}
+
+.photographers-section article {
+  width: calc(50% - 70px);
+  padding: 0 35px;
+  margin-bottom: 80px;
+}
+.photographers-section article a {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+.photographers-section article a:hover img {
+  outline: 4px solid var(--bg-primary);
+}
+
+.photographers-section article h2 {
+  margin-top: 20px;
+  color: var(--text-primary);
+  font-size: 36px;
+}
+.photographers-section article img {
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.photographers-section__location,
+.photographers-section__tagline {
+  margin-bottom: 3px;
+}
+
+.photographers-section__location {
+  font-size: 13px;
+  line-height: 17px;
+  color: var(--text-tertiary);
+}
+
+.photographers-section__tagline {
+  font-size: 10px;
+  line-height: 13px;
+  color: black;
+}
+
+.photographers-section__price {
+  font-size: 9px;
+  line-height: 12px;
+  color: #757575;
+}
+
+@media (min-width: 1200px) {
+  .photographers-section article {
+    padding: 0;
+    width: 33.333%;
+  }
+}

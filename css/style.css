@@ -1,6 +1,10 @@
 @import url("variables.css");
 @import url("layout.css");
-@import url("button.css");
 @import url("photographer.css");
-@import url("photographers-section.css");
-@import url("photographer-header.css");
+
+/* Components */
+@import url("components/button.css");
+@import url("components/photographers-section.css");
+@import url("components/photographer-header.css");
+@import url("components/photographer-gallery.css");
+@import url("components/photographer-gallery-item.css");
