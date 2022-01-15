@@ -25,17 +25,28 @@ class Photographer {
             headerTemplate.createPhotographerHeader()
           );
 
+          // Display the photographer gallery
+          let totalLikes = 0;
           mediasData
             .map((media) => new MediaData(media))
             .forEach((media) => {
               if (media.photographerId == photographerID) {
+                totalLikes = totalLikes + media.likes;
                 medias.push(media);
               }
             });
 
           const galleryTemplate = new PhotographerGallery(medias);
+          const counterTemplate = new PhotographerLikesCounter(
+            totalLikes,
+            photographer.price
+          );
+
           this.mainSection.appendChild(
             galleryTemplate.createPhotographerGallery()
+          );
+          this.mainSection.appendChild(
+            counterTemplate.createPhotographerLikesCounter()
           );
         }
       });

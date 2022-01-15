@@ -1,0 +1,21 @@
+.photographer-likes-counter {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  right: 40px;
+  padding: 20px 30px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  background-color: var(--bg-secondary);
+  align-items: center;
+}
+.photographer-likes-counter p {
+  font-size: 24px;
+  line-height: 31px;
+}
+.photographer-likes-counter p:first-child {
+  margin-right: 65px;
+}
+.photographer-likes-counter p:first-child > span:first-child {
+  margin-right: 7px;
+}
