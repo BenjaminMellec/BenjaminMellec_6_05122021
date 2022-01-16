@@ -1,14 +1,8 @@
 body {
-  font-family: "DM Sans", sans-serif;
+  position: relative;
   margin: 0;
-}
-
-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  height: 90px;
+  font-family: "DM Sans", sans-serif;
+  box-sizing: border-box;
 }
 
 main {
@@ -36,6 +30,22 @@ ul {
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+button {
+  display: flex;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 90px;
 }
 
 .logo {

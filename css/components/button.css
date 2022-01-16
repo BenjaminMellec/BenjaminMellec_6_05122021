@@ -2,9 +2,7 @@
   font-size: 20px;
   font-weight: bold;
   color: white;
-  padding: 11px;
-  width: 170px;
-  height: 70px;
+  padding: 20px 11px;
   border: none;
   background-color: var(--bg-primary);
   border-radius: 5px;
@@ -14,4 +12,8 @@
 .button:focus {
   background-color: var(--bg-secondary);
   color: black;
+}
+.button--submit {
+  padding: 20px 50px;
+  font-size: 18px;
 }

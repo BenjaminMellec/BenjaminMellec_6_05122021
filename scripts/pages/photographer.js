@@ -1,5 +1,6 @@
 class Photographer {
   constructor() {
+    this.body = document.querySelector("body");
     this.mainSection = document.querySelector("#main");
     this.photographersApi = new PhotographersApi("data/photographers.json");
     this.mediasApi = new MediasApi("data/photographers.json");
@@ -15,17 +16,20 @@ class Photographer {
     const urlParams = new URLSearchParams(queryString);
     const photographerID = urlParams.get("id");
 
-    // Display the photographer header
     photographersData
       .map((photographer) => new PhotographerData(photographer))
       .forEach((photographer) => {
         if (photographer.id == photographerID) {
+          // Display the photographer header & the contact modal
           const headerTemplate = new PhotographerHeader(photographer);
+          const modal = new PhotographerContactModal(photographer.name);
+
           this.mainSection.appendChild(
             headerTemplate.createPhotographerHeader()
           );
+          this.body.appendChild(modal.createPhotographerContactModal());
 
-          // Display the photographer gallery
+          // Display the photographer gallery & likes counter
           let totalLikes = 0;
           mediasData
             .map((media) => new MediaData(media))

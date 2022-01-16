@@ -31,9 +31,11 @@
   font-weight: 400;
   color: var(--text-tertiary);
 }
-.photographer-gallery__item-content p {
-  font-weight: 600;
+.photographer-gallery__item-content-likes {
+  display: flex;
+  align-items: center;
 }
-.photographer-gallery__item-content p span:first-child {
+.photographer-gallery__item-content-likes p {
+  font-weight: 600;
   margin-right: 7px;
 }

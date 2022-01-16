@@ -13,7 +13,12 @@ class PhotographerGalleryItem {
         </a>
         <div class="photographer-gallery__item-content">
           <h2>${this.media.title}</h2>
-          <p><span>${this.media.likes}</span><span><img src="assets/icons/heart-red.svg" /></span></p>
+          <div class="photographer-gallery__item-content-likes">
+            <p>${this.media.likes}</p>
+            <button>
+              <img src="assets/icons/heart-red.svg" alt="likes"/>
+            </button>
+          </div>
         </div>
       </article>
     `;
