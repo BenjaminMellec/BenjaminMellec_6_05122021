@@ -55,8 +55,11 @@ form input,
 form textarea {
   width: 100%;
   height: 68px;
+  padding: 10px;
   border: none;
   border-radius: 5px;
+  font-size: 20px;
+  color: var(--text-secondary);
 }
 form textarea {
   height: 170px;

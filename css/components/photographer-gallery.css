@@ -39,3 +39,6 @@
   font-weight: 600;
   margin-right: 7px;
 }
+.photographer-gallery__item-content-likes img {
+  cursor: pointer;
+}

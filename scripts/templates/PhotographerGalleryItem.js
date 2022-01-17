@@ -14,10 +14,8 @@ class PhotographerGalleryItem {
         <div class="photographer-gallery__item-content">
           <h2>${this.media.title}</h2>
           <div class="photographer-gallery__item-content-likes">
-            <p>${this.media.likes}</p>
-            <button>
-              <img src="assets/icons/heart-red.svg" alt="likes"/>
-            </button>
+            <p class="photographer-gallery__item-content-likes-number">${this.media.likes}</p>
+            <img class="photographer-gallery__item-content-likes-button" src="assets/icons/heart-red.svg" alt="likes"/>
           </div>
         </div>
       </article>
