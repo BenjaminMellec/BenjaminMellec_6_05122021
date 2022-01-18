@@ -13,7 +13,7 @@ class PhotographerLikesCounter {
           <span id="total_likes_number">${this.likes}</span>
           <span><img src="assets/icons/heart-black.svg" /></span>
         </p>
-        <p>${this.price} / jour</p>
+        <p>${this.price}€ / jour</p>
     `;
 
     counter.innerHTML = counterContent;
