@@ -1,0 +1,41 @@
+.photographer-gallery-filter {
+  display: flex;
+  margin: 9px 0 30px 0;
+  align-items: center;
+}
+.photographer-gallery-filter label {
+  margin-right: 25px;
+  font-size: 18px;
+  line-height: 23px;
+  color: black;
+}
+.photographer-gallery-filter__container {
+  position: relative;
+}
+.photographer-gallery-filter__container::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 18px;
+  width: 16px;
+  height: 10px;
+  transform: translateY(-50%);
+  background-image: url("/assets/icons/white-arrow.svg");
+}
+.photographer-gallery-filter select {
+  position: relative;
+  width: 170px;
+  padding: 23px 20px;
+  border-radius: 5px;
+  border: 0;
+  color: white;
+  font-size: 18px;
+  line-height: 23px;
+  font-weight: bold;
+  background-color: var(--bg-primary);
+  cursor: pointer;
+
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+}

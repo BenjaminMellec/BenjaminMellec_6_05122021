@@ -2,18 +2,21 @@ class PhotographerGalleryFilter {
   constructor() {}
 
   createPhotographerGalleryFilter() {
-    const galleryItem = document.createElement("form");
+    const galleryFilter = document.createElement("form");
+    galleryFilter.classList.add("photographer-gallery-filter");
 
     const itemContent = `
       <label for="filter">Trier par</label>
-      <select name="filter" id="filter">
-        <option value="popularity">Popularité</option>
-        <option value="date">Date</option>
-        <option value="title">Titre</option>
-      </select>
+      <div class="photographer-gallery-filter__container">
+        <select name="filter" id="filter">
+          <option value="popularity">Popularité</option>
+          <option value="date">Date</option>
+          <option value="title">Titre</option>
+        </select>
+      </div>
     `;
 
-    galleryItem.innerHTML = itemContent;
-    return galleryItem;
+    galleryFilter.innerHTML = itemContent;
+    return galleryFilter;
   }
 }
