@@ -5,6 +5,7 @@
 
 /* Components */
 @import url("components/button.css");
+@import url("components/loading-spinner.css");
 @import url("components/photographers-section.css");
 @import url("components/photographer-header.css");
 @import url("components/photographer-contact-modal.css");

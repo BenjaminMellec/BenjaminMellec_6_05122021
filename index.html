@@ -20,11 +20,23 @@
     </header>
     <main id="main"></main>
 
+    <div
+      id="loading_spinner"
+      class="loading-spinner__container loading-spinner__container--visible"
+    >
+      <div class="loading-spinner">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+
     <script src="scripts/api/Api.js"></script>
     <script src="scripts/models/PhotographerData.js"></script>
     <script src="scripts/factories/Factory.js"></script>
     <script src="scripts/templates/PhotographerCard.js"></script>
-    <script src="scripts/utils/loader.js"></script>
+    <script src="scripts/utils/loadingSpinner.js"></script>
     <script src="scripts/pages/index.js"></script>
   </body>
 </html>
