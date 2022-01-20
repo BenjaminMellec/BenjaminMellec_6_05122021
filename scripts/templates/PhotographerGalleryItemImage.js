@@ -1,4 +1,4 @@
-class PhotographerGalleryItem {
+class PhotographerGalleryItemImage {
   constructor(media) {
     this.media = media;
   }
@@ -9,7 +9,7 @@ class PhotographerGalleryItem {
     const itemContent = `
       <article class="photographer-gallery__item">
         <a href='#' class="photographer-gallery__item-link">
-          <img src="${this.media.image}" class="photographer-gallery__item-image" />
+          <img src="assets/images/galleries/${this.media.photographerId}/${this.media.image}" class="photographer-gallery__item-image" />
         </a>
         <div class="photographer-gallery__item-content">
           <h2>${this.media.title}</h2>

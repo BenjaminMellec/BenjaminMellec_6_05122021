@@ -4,6 +4,7 @@ class MediaData {
     this._photographerId = data.photographerId;
     this._title = data.title;
     this._image = data.image;
+    this._video = data.video;
     this._likes = data.likes;
     this._date = data.date;
     this._price = data.price;
@@ -19,7 +20,10 @@ class MediaData {
     return this._title;
   }
   get image() {
-    return `assets/images/galleries/${this._photographerId}/${this._image}`;
+    return this._image;
+  }
+  get video() {
+    return this._video;
   }
   get likes() {
     return this._likes;
