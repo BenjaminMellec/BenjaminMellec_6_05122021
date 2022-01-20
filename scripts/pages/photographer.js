@@ -19,7 +19,7 @@ class Photographer {
 
     // Returns the data of the photographer based on the ID parameter of the url
     photographersData
-      .map((photographer) => new PhotographerData(photographer))
+      .map((photographer) => new Factory(photographer, "photographer"))
       .forEach((photographer) => {
         photographer;
         if (photographer.id == urlID) {
@@ -30,7 +30,7 @@ class Photographer {
 
     // Returns the data of the medias gallery based on the photographer ID
     mediasData
-      .map((media) => new MediaData(media))
+      .map((media) => new Factory(media, "media"))
       .forEach((media) => {
         if (media.photographerId == photographerData.id) {
           totalLikes = totalLikes + media.likes;
