@@ -4,7 +4,6 @@ class PhotographerGallery {
   }
 
   createPhotographerGallery() {
-    const gallerySection = document.createElement("section");
     const galleryList = document.createElement("ul");
     galleryList.classList.add("photographer-gallery");
 
@@ -18,7 +17,6 @@ class PhotographerGallery {
       galleryList.appendChild(item.createPhotographerGalleryItem());
     });
 
-    gallerySection.appendChild(galleryList);
-    return gallerySection;
+    return galleryList;
   }
 }

@@ -5,7 +5,6 @@ class PhotographerGalleryItemVideo {
 
   createPhotographerGalleryItem() {
     const galleryItem = document.createElement("li");
-    console.log(this.media);
 
     const itemContent = `
       <article class="photographer-gallery__item">

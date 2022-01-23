@@ -39,10 +39,9 @@ class Photographer {
       });
 
     // Create templates to display
-    const galleryFilter = new PhotographerGalleryFilter();
     const headerTemplate = new PhotographerHeader(photographerData);
+    const galleryFilter = new PhotographerGalleryFilter(medias);
     const modal = new PhotographerContactModal(photographerData.name);
-    const galleryTemplate = new PhotographerGallery(medias);
     const counterTemplate = new PhotographerLikesCounter(
       totalLikes,
       photographerData.price
@@ -53,7 +52,6 @@ class Photographer {
     this.mainSection.appendChild(
       galleryFilter.createPhotographerGalleryFilter()
     );
-    this.mainSection.appendChild(galleryTemplate.createPhotographerGallery());
     this.mainSection.appendChild(
       counterTemplate.createPhotographerLikesCounter()
     );
