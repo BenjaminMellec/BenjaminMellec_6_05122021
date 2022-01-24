@@ -4,7 +4,7 @@ class PhotographerGalleryFilter {
 
     this.mainSection = document.querySelector("#main");
     this.galleryWrapper = document.createElement("section");
-    this.filterFormWrapper = document.createElement("div");
+    this.filterFormWrapper = document.createElement("section");
   }
 
   async filterMedias(selectedFilter) {
@@ -46,16 +46,16 @@ class PhotographerGalleryFilter {
 
   createPhotographerGalleryFilter() {
     const itemContent = `
-    <form class="photographer-gallery-filter">
-      <label for="filter">Trier par</label>
-      <div class="photographer-gallery-filter__container">
-        <select name="filter" id="filter">
-          <option value="popularity">Popularité</option>
-          <option value="date">Date</option>
-          <option value="title">Titre</option>
-        </select>
-      </div>
-    </form>
+      <form class="photographer-gallery-filter">
+        <label for="filter">Trier par</label>
+        <div class="photographer-gallery-filter__container">
+          <select name="filter" id="filter">
+            <option value="popularity">Popularité</option>
+            <option value="date">Date</option>
+            <option value="title">Titre</option>
+          </select>
+        </div>
+      </form>
     `;
 
     this.filterFormWrapper.innerHTML = itemContent;

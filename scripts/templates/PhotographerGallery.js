@@ -8,13 +8,9 @@ class PhotographerGallery {
     galleryList.classList.add("photographer-gallery");
 
     this.medias.forEach((media) => {
-      let item;
-      if (media.image) {
-        item = new PhotographerGalleryItemImage(media);
-      } else {
-        item = new PhotographerGalleryItemVideo(media);
-      }
+      const item = new PhotographerGalleryItem(media);
       galleryList.appendChild(item.createPhotographerGalleryItem());
+      likesIncrementation();
     });
 
     return galleryList;
