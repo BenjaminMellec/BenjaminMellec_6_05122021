@@ -45,6 +45,9 @@ class PhotographerGalleryFilter {
   }
 
   createPhotographerGalleryFilter() {
+    const galleryWrapper = document.createElement("section");
+    galleryWrapper.classList.add("gallery-wrapper");
+
     const itemContent = `
       <form class="photographer-gallery-filter">
         <label for="filter">Trier par</label>

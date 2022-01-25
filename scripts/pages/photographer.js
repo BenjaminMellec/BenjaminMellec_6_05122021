@@ -39,9 +39,6 @@ class Photographer {
       });
 
     // Create templates to display
-    const galleryWrapper = document.createElement("section");
-    galleryWrapper.classList.add("gallery-wrapper");
-
     const headerTemplate = new PhotographerHeader(photographerData);
     const galleryFilter = new PhotographerGalleryFilter(medias);
     const modal = new PhotographerContactModal(photographerData.name);
@@ -52,10 +49,10 @@ class Photographer {
 
     // Display the templates on the photographer page
     this.mainSection.appendChild(headerTemplate.createPhotographerHeader());
-    this.mainSection.appendChild(galleryWrapper);
     this.mainSection.appendChild(
       galleryFilter.createPhotographerGalleryFilter()
     );
+    await galleryFilter.filterMedias("popularity");
     this.mainSection.appendChild(
       counterTemplate.createPhotographerLikesCounter()
     );
