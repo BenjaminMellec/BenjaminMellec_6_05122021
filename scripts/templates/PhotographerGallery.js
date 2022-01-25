@@ -10,7 +10,6 @@ class PhotographerGallery {
     this.medias.forEach((media) => {
       const item = new PhotographerGalleryItem(media);
       galleryList.appendChild(item.createPhotographerGalleryItem());
-      likesIncrementation();
     });
 
     return galleryList;

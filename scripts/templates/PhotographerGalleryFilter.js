@@ -1,6 +1,7 @@
 class PhotographerGalleryFilter {
-  constructor(Medias) {
+  constructor(Medias, totalLikes) {
     this.Medias = Medias;
+    this.totalLikes = totalLikes;
 
     this.mainSection = document.querySelector("#main");
     this.galleryWrapper = document.createElement("section");
@@ -29,6 +30,7 @@ class PhotographerGalleryFilter {
       galleryTemplate.createPhotographerGallery()
     );
     this.mainSection.appendChild(this.galleryWrapper);
+    likesIncrementation(this.totalLikes);
   }
 
   onChangeFilter() {

@@ -20,7 +20,7 @@
   width: 16px;
   height: 10px;
   transform: translateY(-50%);
-  background-image: url("/assets/icons/white-arrow.svg");
+  background-image: url("../../assets/icons/white-arrow.svg");
 }
 .photographer-gallery-filter select {
   position: relative;

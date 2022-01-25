@@ -40,7 +40,7 @@ class Photographer {
 
     // Create templates to display
     const headerTemplate = new PhotographerHeader(photographerData);
-    const galleryFilter = new PhotographerGalleryFilter(medias);
+    const galleryFilter = new PhotographerGalleryFilter(medias, totalLikes);
     const modal = new PhotographerContactModal(photographerData.name);
     const counterTemplate = new PhotographerLikesCounter(
       totalLikes,
@@ -52,10 +52,10 @@ class Photographer {
     this.mainSection.appendChild(
       galleryFilter.createPhotographerGalleryFilter()
     );
-    await galleryFilter.filterMedias("popularity");
     this.mainSection.appendChild(
       counterTemplate.createPhotographerLikesCounter()
     );
+    await galleryFilter.filterMedias("popularity");
     this.body.appendChild(modal.createPhotographerContactModal());
   }
 }
