@@ -1,0 +1,56 @@
+.photographer-gallery-lightbox {
+  visibility: hidden;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+  opacity: 0;
+  transition: 0.2s;
+}
+.photographer-gallery-lightbox--visible {
+  visibility: visible;
+  opacity: 1;
+  transition: 0.2s;
+}
+.photographer-gallery-lightbox__container {
+  position: relative;
+  margin: auto;
+  top: 50%;
+  width: 72%;
+  height: 80%;
+  transform: translateY(-50%);
+}
+.photographer-gallery-lightbox__container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.photographer-gallery-lightbox__container video {
+  max-width: 100%;
+  max-height: 100%;
+}
+.photographer-gallery-lightbox__container h3 {
+  margin-top: 12px;
+  font-size: 24px;
+  line-height: 31px;
+  color: var(--text-tertiary);
+}
+.photographer-gallery-lightbox__close {
+  position: absolute;
+  top: 15px;
+  right: -70px;
+}
+.photographer-gallery-lightbox__arrow--left,
+.photographer-gallery-lightbox__arrow--right {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.photographer-gallery-lightbox__arrow--left {
+  left: -60px;
+}
+.photographer-gallery-lightbox__arrow--right {
+  right: -60px;
+}

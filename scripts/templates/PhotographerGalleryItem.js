@@ -2,10 +2,21 @@ class PhotographerGalleryItem {
   constructor(media) {
     this.media = media;
     this.likes = media.likes;
+    this.mainSection = document.querySelector("#main");
+    this.galleryItem = document.createElement("li");
+  }
+
+  showModal() {
+    this.galleryItem.querySelector("a").addEventListener("click", (e) => {
+      e.preventDefault();
+      const Lightbox = new PhotographerGalleryLightbox(this.media);
+      this.mainSection.appendChild(
+        Lightbox.createPhotographerGalleryLightbox()
+      );
+    });
   }
 
   createPhotographerGalleryItem() {
-    const galleryItem = document.createElement("li");
     let itemMedia;
 
     if (this.media.image) {
@@ -36,7 +47,8 @@ class PhotographerGalleryItem {
         </article>
       `;
 
-    galleryItem.innerHTML = itemContent;
-    return galleryItem;
+    this.galleryItem.innerHTML = itemContent;
+    this.showModal();
+    return this.galleryItem;
   }
 }
