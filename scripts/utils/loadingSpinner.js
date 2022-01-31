@@ -10,4 +10,5 @@ const hideLoadingSpinner = () => {
   body.style.overflow = "auto";
 };
 
-setTimeout(hideLoadingSpinner, 2500);
+hideLoadingSpinner();
+// setTimeout(hideLoadingSpinner, 2500);

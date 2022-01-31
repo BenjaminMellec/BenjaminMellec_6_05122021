@@ -8,7 +8,7 @@ class PhotographerGallery {
     galleryList.classList.add("photographer-gallery");
 
     this.medias.forEach((media) => {
-      const item = new PhotographerGalleryItem(media);
+      const item = new PhotographerGalleryItem(media, this.medias);
       galleryList.appendChild(item.createPhotographerGalleryItem());
     });
 

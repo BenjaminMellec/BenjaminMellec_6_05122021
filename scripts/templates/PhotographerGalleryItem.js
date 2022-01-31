@@ -1,6 +1,7 @@
 class PhotographerGalleryItem {
-  constructor(media) {
+  constructor(media, allMedias) {
     this.media = media;
+    this.allMedias = allMedias;
     this.likes = media.likes;
     this.mainSection = document.querySelector("#main");
     this.galleryItem = document.createElement("li");
@@ -9,7 +10,11 @@ class PhotographerGalleryItem {
   showModal() {
     this.galleryItem.querySelector("a").addEventListener("click", (e) => {
       e.preventDefault();
-      const Lightbox = new PhotographerGalleryLightbox(this.media);
+      const Lightbox = new PhotographerGalleryLightbox(
+        this.media,
+        this.allMedias
+      );
+
       this.mainSection.appendChild(
         Lightbox.createPhotographerGalleryLightbox()
       );
