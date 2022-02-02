@@ -60,6 +60,24 @@ class PhotographerGalleryLightbox {
     }
   }
 
+  getPressedArrow(currentMedia) {
+    let index;
+    index = this.allMedias.findIndex((x) => x.id === currentMedia.id);
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") {
+        console.log(e.key);
+        currentMedia = this.allMedias[index - 1];
+      }
+      if (e.key === "ArrowRight") {
+        console.log(e.key);
+        currentMedia = this.allMedias[index + 1];
+      }
+      this.createMediaTemplate(currentMedia);
+      this.getPressedArrow(currentMedia);
+    });
+  }
+
   navigationMethods(currentMedia) {
     this.onCloseButton();
     this.onPreviousButton(currentMedia);
@@ -75,7 +93,6 @@ class PhotographerGalleryLightbox {
       "photographer-gallery-lightbox--visible"
     );
     this.lightbox.setAttribute("id", "gallery_lightbox");
-
     this.body.style.overflow = "hidden";
 
     if (currentMedia.image) {
@@ -113,9 +130,8 @@ class PhotographerGalleryLightbox {
 
   createPhotographerGalleryLightbox() {
     let currentMedia = this.media;
-
     this.createMediaTemplate(currentMedia);
-
+    this.getPressedArrow(currentMedia);
     return this.lightbox;
   }
 }
