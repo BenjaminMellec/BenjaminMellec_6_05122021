@@ -1,6 +1,7 @@
 class PhotographerGalleryLightbox {
   constructor(media, allMedias) {
     this.body = document.querySelector("body");
+    this.main = document.querySelector("main");
     this.lightbox = document.createElement("section");
     this.media = media;
     this.allMedias = allMedias;
@@ -13,7 +14,10 @@ class PhotographerGalleryLightbox {
         this.lightbox.classList.remove(
           "photographer-gallery-lightbox--visible"
         );
-        this.lightbox.innerHTML = "";
+        // Remove lightbox from the DOM after the opacity transition
+        setTimeout(() => {
+          this.lightbox.remove();
+        }, 300);
         this.body.style.overflow = "auto";
       });
   }
@@ -28,9 +32,6 @@ class PhotographerGalleryLightbox {
         currentMedia = this.allMedias[index - 1];
         if (currentMedia) {
           this.createMediaTemplate(currentMedia);
-          this.onPreviousButton(currentMedia);
-          this.onNextButton(currentMedia);
-          this.onCloseButton();
         }
       });
 
@@ -50,9 +51,6 @@ class PhotographerGalleryLightbox {
         currentMedia = this.allMedias[index + 1];
         if (currentMedia) {
           this.createMediaTemplate(currentMedia);
-          this.onPreviousButton(currentMedia);
-          this.onNextButton(currentMedia);
-          this.onCloseButton();
         }
       });
 
@@ -60,6 +58,12 @@ class PhotographerGalleryLightbox {
       this.lightbox.querySelector("#gallery_lightbox_next").style.display =
         "none";
     }
+  }
+
+  navigationMethods(currentMedia) {
+    this.onCloseButton();
+    this.onPreviousButton(currentMedia);
+    this.onNextButton(currentMedia);
   }
 
   createMediaTemplate(currentMedia) {
@@ -104,14 +108,13 @@ class PhotographerGalleryLightbox {
     `;
 
     this.lightbox.innerHTML = lightboxContent;
+    this.navigationMethods(currentMedia);
   }
 
   createPhotographerGalleryLightbox() {
     let currentMedia = this.media;
 
     this.createMediaTemplate(currentMedia);
-    this.onPreviousButton(currentMedia);
-    this.onNextButton(currentMedia);
 
     return this.lightbox;
   }
