@@ -73,8 +73,8 @@ class PhotographerGalleryLightbox {
         console.log(e.key);
         currentMedia = this.allMedias[index + 1];
       }
-      this.createMediaTemplate(currentMedia);
       this.getPressedArrow(currentMedia);
+      this.createMediaTemplate(currentMedia);
     });
   }
 
@@ -92,18 +92,19 @@ class PhotographerGalleryLightbox {
       "photographer-gallery-lightbox",
       "photographer-gallery-lightbox--visible"
     );
+    this.lightbox.ariaLabel = "image closeup view";
     this.lightbox.setAttribute("id", "gallery_lightbox");
     this.body.style.overflow = "hidden";
 
     if (currentMedia.image) {
       lightboxMedia = `
-        <img src="assets/images/galleries/${currentMedia.photographerId}/${currentMedia.image}" class="photographer-gallery-lightbox__image" />
+        <img src="assets/images/galleries/${currentMedia.photographerId}/${currentMedia.image}" alt="${currentMedia.title}" class="photographer-gallery-lightbox__image" />
       `;
     } else if (currentMedia.video) {
       lightboxMedia = `
         <video class="photographer-gallery-lightbox__video" controls>
           <source src="assets/images/galleries/${currentMedia.photographerId}/${currentMedia.video}" type="video/mp4">
-          Sorry, your browser doesn't support embedded videos.
+          ${currentMedia.title}
         </video>
       `;
     }
@@ -113,13 +114,13 @@ class PhotographerGalleryLightbox {
         ${lightboxMedia}
         <h3>${currentMedia.title}</h3>
         <button id="gallery_lightbox_previous" class="photographer-gallery-lightbox__arrow--left">
-          <img src="assets/icons/arrow-left.svg" />
+          <img src="assets/icons/arrow-left.svg" alt="Previous image" />
         </button>
         <button id="gallery_lightbox_close" class="photographer-gallery-lightbox__close">
-          <img src="assets/icons/close-red.svg" />
+          <img src="assets/icons/close-red.svg" alt="Close dialog"/>
         <button>
         <button id="gallery_lightbox_next" class="photographer-gallery-lightbox__arrow--right">
-          <img src="assets/icons/arrow-right.svg" />
+          <img src="assets/icons/arrow-right.svg" alt="Next image" />
         </button>
       </div>
     `;

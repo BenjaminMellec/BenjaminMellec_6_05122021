@@ -12,11 +12,13 @@ class PhotographerHeader {
           <h1 class="photographer-header__infos-title">
             ${this._photographer.name}
           </h1>
-          <p class="photographer-header__infos-city">
-            ${this._photographer.city}
-          </p>
-          <p class="photographer-header__infos-tagline">
-            ${this._photographer.tagline}
+          <p class="photographer-header__infos">
+            <span class="photographer-header__infos-city">
+              ${this._photographer.city}, ${this._photographer.country}
+            </span>
+            <span class="photographer-header__infos-tagline">
+              ${this._photographer.tagline}
+            </span>
           </p>
         </div>
         <div class="photographer-header__contact">
@@ -25,7 +27,7 @@ class PhotographerHeader {
           </button>
         </div>
         <div class="photographer-header__avatar">
-          <img src="${this._photographer.portrait}">
+          <img src="${this._photographer.portrait}" alt="${this._photographer.name}">
         </div>
         `;
 

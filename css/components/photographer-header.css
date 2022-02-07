@@ -17,6 +17,9 @@
   line-height: 83px;
   color: var(--text-primary);
 }
+.photographer-header__infos span {
+  display: block;
+}
 .photographer-header__infos-city {
   margin-bottom: 19px;
   font-size: 24px;

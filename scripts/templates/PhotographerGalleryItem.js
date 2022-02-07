@@ -26,7 +26,7 @@ class PhotographerGalleryItem {
 
     if (this.media.image) {
       itemMedia = `
-        <img src="assets/images/galleries/${this.media.photographerId}/${this.media.image}" class="photographer-gallery__item-image" />
+        <img src="assets/images/galleries/${this.media.photographerId}/${this.media.image}" alt="${this.media.title}" class="photographer-gallery__item-image" />
       `;
     } else if (this.media.video) {
       itemMedia = `

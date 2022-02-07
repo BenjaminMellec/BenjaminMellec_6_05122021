@@ -9,5 +9,5 @@ const hideLoadingSpinner = () => {
   loadingSpinner.classList.remove("loading-spinner__container--visible");
   body.style.overflow = "auto";
 };
-hideLoadingSpinner();
-// setTimeout(hideLoadingSpinner, 2500);
+// hideLoadingSpinner();
+setTimeout(hideLoadingSpinner, 2500);
