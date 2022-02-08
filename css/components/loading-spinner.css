@@ -1,14 +1,12 @@
 .loading-spinner__container {
-  display: none;
-}
-.loading-spinner__container--visible {
-  display: block;
   position: fixed;
   top: 90px;
   left: 0;
   right: 0;
   bottom: 0;
   background-color: white;
+  opacity: 1;
+  transition: opacity 0.5s;
 }
 .loading-spinner {
   display: inline-block;

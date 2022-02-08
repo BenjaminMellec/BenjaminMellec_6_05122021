@@ -25,6 +25,7 @@
 .photographer-gallery__item-content {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
 }
 .photographer-gallery__item-content h2,
 .photographer-gallery__item-content p {
