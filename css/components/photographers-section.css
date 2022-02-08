@@ -1,12 +1,10 @@
 .photographers-section {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  margin: 100px -35px;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 7.6%;
+  margin: 100px 0;
 }
 .photographers-section article {
-  width: calc(50% - 70px);
   padding: 0 35px;
   margin-bottom: 80px;
   text-align: center;
@@ -50,11 +48,4 @@
   font-size: 9px;
   line-height: 12px;
   color: #757575;
-}
-
-@media (min-width: 1200px) {
-  .photographers-section article {
-    padding: 0;
-    width: 33.333%;
-  }
 }

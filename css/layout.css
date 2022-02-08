@@ -8,9 +8,14 @@ body {
   font-family: "DM Sans", sans-serif;
 }
 
+header,
+main {
+  max-width: 1290px;
+  margin: auto;
+  padding: 0 25px;
+}
 main {
   position: relative;
-  padding: 0 100px;
 }
 
 h1,
@@ -22,7 +27,6 @@ p {
 
 h1 {
   color: var(--text-tertiary);
-  margin-right: 100px;
 }
 
 a {
@@ -53,5 +57,4 @@ button {
 
 .logo {
   height: 50px;
-  margin-left: 100px;
 }

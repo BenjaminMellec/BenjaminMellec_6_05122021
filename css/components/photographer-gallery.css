@@ -1,12 +1,13 @@
 .photographer-gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
   margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 7.6%;
+}
+.photographer-gallery li {
+  margin-bottom: 40px;
 }
 .photographer-gallery__item {
-  width: 350px;
-  margin-bottom: 40px;
 }
 .photographer-gallery__item-link {
   display: block;
