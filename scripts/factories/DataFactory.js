@@ -1,4 +1,4 @@
-class Factory {
+class DataFactory {
   constructor(data, type) {
     if (type === "photographer") {
       return new PhotographerData(data);

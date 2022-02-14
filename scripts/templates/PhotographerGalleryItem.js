@@ -23,24 +23,20 @@ class PhotographerGalleryItem {
 
   createPhotographerGalleryItem() {
     let itemMedia;
+    let itemMediaTemplate;
 
     if (this.media.image) {
-      itemMedia = `
-        <img src="assets/images/galleries/${this.media.photographerId}/${this.media.image}" alt="${this.media.title}" class="photographer-gallery__item-image" />
-      `;
+      itemMedia = new MediaFactory(this.media, "image");
+      itemMediaTemplate = itemMedia.getMediaCard();
     } else if (this.media.video) {
-      itemMedia = `
-        <video class="photographer-gallery__item-video">
-          <source src="assets/images/galleries/${this.media.photographerId}/${this.media.video}" type="video/mp4">
-          Sorry, your browser doesn't support embedded videos.
-        </video>
-      `;
+      itemMedia = new MediaFactory(this.media, "video");
+      itemMediaTemplate = itemMedia.getMediaCard();
     }
 
     let itemContent = `
         <article id="${this.media.id}" class="photographer-gallery__item">
           <a href='#' class="photographer-gallery__item-link">
-            ${itemMedia}
+            ${itemMediaTemplate}
           </a>
           <div class="photographer-gallery__item-content">
             <h2>${this.media.title}</h2>

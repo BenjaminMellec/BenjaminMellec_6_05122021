@@ -40,6 +40,7 @@
   font-weight: 700;
 }
 .photographer-gallery-filter__select--selected {
+  width: 100%;
   padding: 23px 20px;
   border-radius: 5px;
 }
@@ -54,11 +55,11 @@
   left: 0;
   right: 0;
   z-index: 99;
-}
-.photographer-gallery-filter__select-items,
-.photographer-gallery-filter__select-items div:last-child {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+}
+.photographer-gallery-filter__select-items div {
+  border-radius: 5px;
 }
 .photographer-gallery-filter__select-items div {
   position: relative;

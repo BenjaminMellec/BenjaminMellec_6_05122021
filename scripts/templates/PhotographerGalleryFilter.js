@@ -3,6 +3,8 @@ class PhotographerGalleryFilter {
     this.Medias = Medias;
     this.totalLikes = totalLikes;
 
+    this.filterValue;
+
     this.mainSection = document.querySelector("#main");
     this.galleryWrapper = document.createElement("section");
     this.filterFormWrapper = document.createElement("section");
@@ -15,7 +17,7 @@ class PhotographerGalleryFilter {
       this.Medias.sort(function (a, b) {
         return new Date(b.date) - new Date(a.date);
       });
-    } else if (selectedFilter === "title") {
+    } else if (selectedFilter === "titre") {
       this.Medias.sort((a, b) => {
         return a.title.localeCompare(b.title);
       });
@@ -54,7 +56,7 @@ class PhotographerGalleryFilter {
     var select = selectWrapper.getElementsByTagName("select")[0];
     var selectLength = select.length;
     /* Create a new DIV that will act as the selected item: */
-    var selectDiv = document.createElement("DIV");
+    var selectDiv = document.createElement("button");
     selectDiv.setAttribute(
       "class",
       "photographer-gallery-filter__select--selected"
@@ -68,10 +70,16 @@ class PhotographerGalleryFilter {
       "class",
       "photographer-gallery-filter__select-items photographer-gallery-filter__select--hide"
     );
+    optionsDiv.setAttribute("role", "listbox");
 
     for (var j = 0; j < selectLength; j++) {
       /* For each option in the original select element, create a new DIV that will act as an option item: */
       var optionDiv = document.createElement("DIV");
+      optionDiv.setAttribute("role", "option");
+      optionDiv.setAttribute(
+        "data-value",
+        select.options[j].innerHTML.toLowerCase()
+      );
       optionDiv.innerHTML = select.options[j].innerHTML;
 
       if (optionDiv.innerHTML === selectDiv.innerHTML) {
@@ -84,6 +92,8 @@ class PhotographerGalleryFilter {
         /* When an item is clicked, update the original select box, and the selected item: */
         var parentSelect = this.parentNode.parentNode.querySelector("select");
         var selected = this.parentNode.previousSibling;
+
+        this.filterValue = this.getAttribute("data-value");
 
         for (var i = 0; i < parentSelect.length; i++) {
           if (parentSelect.options[i].innerHTML == this.innerHTML) {
@@ -102,12 +112,14 @@ class PhotographerGalleryFilter {
           }
         }
         selected.click();
+        return this.filterValue;
       });
       optionsDiv.appendChild(optionDiv);
     }
     selectWrapper.appendChild(optionsDiv);
     selectDiv.addEventListener("click", function (e) {
       /* When the select box is clicked, close any other select boxes, and open/close the current select box: */
+      e.preventDefault();
       e.stopPropagation();
       closeAllSelect(this);
       this.nextSibling.classList.toggle(
@@ -159,7 +171,7 @@ class PhotographerGalleryFilter {
     const itemContent = `
       <form class="photographer-gallery-filter">
         <label for="filter">Trier par</label>
-        <div class="photographer-gallery-filter__select"  style="width:200px;">
+        <div class="photographer-gallery-filter__select"  style="width:170px;">
           <select name="filter" id="filter">
             <option value="popularity">Popularité</option>
             <option value="date">Date</option>

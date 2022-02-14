@@ -12,7 +12,7 @@ class Index {
     photographersSection.classList.add("photographers-section");
 
     photographersData
-      .map((photographer) => new Factory(photographer, "photographer"))
+      .map((photographer) => new DataFactory(photographer, "photographer"))
       .forEach((photographer) => {
         const Template = new PhotographerCard(photographer);
         photographersSection.appendChild(Template.createPhotographerCard());
