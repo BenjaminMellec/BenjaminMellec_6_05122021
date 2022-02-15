@@ -13,7 +13,7 @@ class MediaFactory {
       return `
          <video class="photographer-gallery__item-video">
           <source src="assets/images/galleries/${this.media.photographerId}/${this.media.video}" type="video/mp4">
-          Sorry, your browser doesn't support embedded videos.
+          ${this.media.title}
         </video>
       `;
     } else {

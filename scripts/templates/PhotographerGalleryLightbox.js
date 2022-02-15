@@ -1,92 +1,95 @@
 class PhotographerGalleryLightbox {
-  constructor(media, allMedias) {
+  constructor(currentMedia, medias) {
     this.body = document.querySelector("body");
     this.main = document.querySelector("main");
     this.lightbox = document.createElement("section");
-    this.media = media;
-    this.allMedias = allMedias;
+    this.currentMedia = currentMedia;
+    this.medias = medias;
+
+    this.onKeyDown = this.onKeyDown.bind(this);
+    document.addEventListener("keydown", this.onKeyDown);
   }
 
   onCloseButton() {
-    this.lightbox
-      .querySelector("#gallery_lightbox_close")
-      .addEventListener("click", () => {
-        this.lightbox.classList.remove(
-          "photographer-gallery-lightbox--visible"
-        );
-        // Remove lightbox from the DOM after the opacity transition
-        setTimeout(() => {
-          this.lightbox.remove();
-        }, 300);
-        this.body.style.overflow = "auto";
-      });
-  }
-
-  onPreviousButton(currentMedia) {
-    let index;
-    index = this.allMedias.findIndex((x) => x.id === currentMedia.id);
-
-    this.lightbox
-      .querySelector("#gallery_lightbox_previous")
-      .addEventListener("click", () => {
-        currentMedia = this.allMedias[index - 1];
-        if (currentMedia) {
-          this.createMediaTemplate(currentMedia);
-        }
-      });
-
-    if (index == 0) {
-      this.lightbox.querySelector("#gallery_lightbox_previous").style.display =
-        "none";
-    }
-  }
-
-  onNextButton(currentMedia) {
-    let index;
-    index = this.allMedias.findIndex((x) => x.id === currentMedia.id);
-
-    this.lightbox
-      .querySelector("#gallery_lightbox_next")
-      .addEventListener("click", () => {
-        currentMedia = this.allMedias[index + 1];
-        if (currentMedia) {
-          this.createMediaTemplate(currentMedia);
-        }
-      });
-
-    if (index == this.allMedias.length - 1) {
-      this.lightbox.querySelector("#gallery_lightbox_next").style.display =
-        "none";
-    }
-  }
-
-  getPressedArrow(currentMedia) {
-    let index;
-    index = this.allMedias.findIndex((x) => x.id === currentMedia.id);
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowLeft") {
-        console.log(e.key);
-        currentMedia = this.allMedias[index - 1];
-      }
-      if (e.key === "ArrowRight") {
-        console.log(e.key);
-        currentMedia = this.allMedias[index + 1];
-      }
-      this.getPressedArrow(currentMedia);
-      this.createMediaTemplate(currentMedia);
+    let cross = this.lightbox.querySelector("#gallery_lightbox_close");
+    cross.addEventListener("click", () => {
+      this.lightbox.classList.remove("photographer-gallery-lightbox--visible");
+      // Remove lightbox from the DOM after the opacity transition
+      setTimeout(() => {
+        this.lightbox.remove();
+      }, 300);
+      this.body.style.overflow = "auto";
     });
   }
 
-  navigationMethods(currentMedia) {
-    this.onCloseButton();
-    this.onPreviousButton(currentMedia);
-    this.onNextButton(currentMedia);
+  onKeyDown(e) {
+    if (e.key === "ArrowLeft") {
+      this.previous(e);
+    } else if (e.key === "ArrowRight") {
+      this.next(e);
+    }
   }
 
-  createMediaTemplate(currentMedia) {
-    let lightboxContent;
+  onClickArrows() {
+    let arrows = this.lightbox.querySelectorAll(
+      ".photographer-gallery-lightbox__arrow"
+    );
+    for (let arrow of arrows) {
+      arrow.addEventListener("click", (e) => {
+        if (
+          arrow.classList.contains("photographer-gallery-lightbox__arrow--left")
+        ) {
+          this.previous(e);
+        } else {
+          this.next(e);
+        }
+      });
+    }
+  }
+
+  previous(e) {
+    e.preventDefault();
+    let index = this.medias.findIndex(
+      (current) => current.id === this.currentMedia.id
+    );
+
+    if (index > 0) {
+      this.currentMedia = this.medias[index - 1];
+      if (index === 1) {
+        this.createMediaTemplate(this.currentMedia);
+        this.lightbox.querySelector(
+          ".photographer-gallery-lightbox__arrow--left"
+        ).style.display = "none";
+      } else if (index > 1) {
+        this.createMediaTemplate(this.currentMedia);
+      }
+    }
+  }
+
+  next(e) {
+    e.preventDefault();
+    let index = this.medias.findIndex(
+      (current) => current.id === this.currentMedia.id
+    );
+
+    if (index < this.medias.length - 1) {
+      this.currentMedia = this.medias[index + 1];
+
+      if (index === this.medias.length - 2) {
+        this.createMediaTemplate(this.currentMedia);
+        this.lightbox.querySelector(
+          ".photographer-gallery-lightbox__arrow--right"
+        ).style.display = "none";
+      } else {
+        this.createMediaTemplate(this.currentMedia);
+      }
+    }
+  }
+
+  createMediaTemplate(media) {
+    let lightboxTemplate;
     let lightboxMedia;
+    let lightboxMediaTemplate;
 
     this.lightbox.classList.add(
       "photographer-gallery-lightbox",
@@ -96,43 +99,34 @@ class PhotographerGalleryLightbox {
     this.lightbox.setAttribute("id", "gallery_lightbox");
     this.body.style.overflow = "hidden";
 
-    if (currentMedia.image) {
-      lightboxMedia = `
-        <img src="assets/images/galleries/${currentMedia.photographerId}/${currentMedia.image}" alt="${currentMedia.title}" class="photographer-gallery-lightbox__image" />
-      `;
-    } else if (currentMedia.video) {
-      lightboxMedia = `
-        <video class="photographer-gallery-lightbox__video" controls>
-          <source src="assets/images/galleries/${currentMedia.photographerId}/${currentMedia.video}" type="video/mp4">
-          ${currentMedia.title}
-        </video>
-      `;
+    if (media.image) {
+      lightboxMedia = new MediaFactory(media, "image");
+      lightboxMediaTemplate = lightboxMedia.getMediaCard();
+    } else if (media.video) {
+      lightboxMedia = new MediaFactory(media, "video");
+      lightboxMediaTemplate = lightboxMedia.getMediaCard();
     }
 
-    lightboxContent = `
+    lightboxTemplate = `
       <div class="photographer-gallery-lightbox__container">
-        ${lightboxMedia}
-        <h3>${currentMedia.title}</h3>
-        <button id="gallery_lightbox_previous" class="photographer-gallery-lightbox__arrow--left">
+        ${lightboxMediaTemplate}
+        <h3>${media.title}</h3>
+        <button class="photographer-gallery-lightbox__arrow photographer-gallery-lightbox__arrow--left">
           <img src="assets/icons/arrow-left.svg" alt="Previous image" />
         </button>
         <button id="gallery_lightbox_close" class="photographer-gallery-lightbox__close">
           <img src="assets/icons/close-red.svg" alt="Close dialog"/>
         <button>
-        <button id="gallery_lightbox_next" class="photographer-gallery-lightbox__arrow--right">
+        <button class="photographer-gallery-lightbox__arrow photographer-gallery-lightbox__arrow--right">
           <img src="assets/icons/arrow-right.svg" alt="Next image" />
         </button>
       </div>
     `;
 
-    this.lightbox.innerHTML = lightboxContent;
-    this.navigationMethods(currentMedia);
-  }
+    this.lightbox.innerHTML = lightboxTemplate;
+    this.onCloseButton();
+    this.onClickArrows();
 
-  createPhotographerGalleryLightbox() {
-    let currentMedia = this.media;
-    this.createMediaTemplate(currentMedia);
-    this.getPressedArrow(currentMedia);
     return this.lightbox;
   }
 }

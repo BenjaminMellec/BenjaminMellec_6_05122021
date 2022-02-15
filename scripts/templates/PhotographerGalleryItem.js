@@ -16,7 +16,8 @@ class PhotographerGalleryItem {
       );
 
       this.mainSection.appendChild(
-        Lightbox.createPhotographerGalleryLightbox()
+        Lightbox.createMediaTemplate(this.media),
+        Lightbox.onClickArrows
       );
     });
   }
