@@ -124,6 +124,12 @@ class PhotographerGalleryLightbox {
     `;
 
     this.lightbox.innerHTML = lightboxTemplate;
+
+    let video = this.lightbox.querySelector("video");
+    if (video) {
+      video.setAttribute("controls", "true");
+    }
+
     this.onCloseButton();
     this.onClickArrows();
 
