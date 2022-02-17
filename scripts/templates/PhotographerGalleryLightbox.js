@@ -109,8 +109,10 @@ class PhotographerGalleryLightbox {
 
     lightboxTemplate = `
       <div class="photographer-gallery-lightbox__container">
-        ${lightboxMediaTemplate}
-        <h3>${media.title}</h3>
+        <div class="photographer-gallery-lightbox__container-media">
+          ${lightboxMediaTemplate}
+          <h3>${media.title}</h3>
+        </div>
         <button class="photographer-gallery-lightbox__arrow photographer-gallery-lightbox__arrow--left">
           <img src="assets/icons/arrow-left.svg" alt="Previous image" />
         </button>
