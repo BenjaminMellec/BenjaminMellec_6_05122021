@@ -55,7 +55,6 @@ class Photographer {
     this.mainSection.appendChild(
       counterTemplate.createPhotographerLikesCounter()
     );
-    await galleryFilter.filterMedias("popularity");
     galleryFilter.customizeSelect();
     this.body.appendChild(modal.createPhotographerContactModal());
   }

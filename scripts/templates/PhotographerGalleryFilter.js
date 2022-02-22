@@ -9,7 +9,7 @@ class PhotographerGalleryFilter {
   }
 
   async filterMedias(selectedFilter) {
-    this.clearGalleryWrapper();
+    this.galleryWrapper.innerHTML = "";
 
     if (selectedFilter === "date") {
       this.Medias.sort(function (a, b) {
@@ -33,22 +33,9 @@ class PhotographerGalleryFilter {
     likesIncrementation(this.totalLikes);
   }
 
-  onChangeFilter() {
-    this.filterFormWrapper
-      .querySelector("#filter")
-      .addEventListener("change", (event) => {
-        const selectedFilter = event.target.value;
-        this.filterMedias(selectedFilter);
-      });
-  }
-
-  clearGalleryWrapper() {
-    this.galleryWrapper.innerHTML = "";
-  }
-
   customizeSelect() {
     // Solution inspired from w3schools https://www.w3schools.com/howto/howto_custom_select.asp
-    var selectedFilter = "test";
+    let FilterObject = this;
     var selectWrapper = document.querySelector(
       ".photographer-gallery-filter__select"
     );
@@ -71,6 +58,8 @@ class PhotographerGalleryFilter {
     );
     optionsDiv.setAttribute("role", "listbox");
 
+    this.filterMedias(this.selectedFilter);
+
     for (var j = 0; j < selectLength; j++) {
       /* For each option in the original select element, create a new DIV that will act as an option item: */
       var optionDiv = document.createElement("DIV");
@@ -92,8 +81,6 @@ class PhotographerGalleryFilter {
         var parentSelect = this.parentNode.parentNode.querySelector("select");
         var selected = this.parentNode.previousSibling;
 
-        selectedFilter = "deuxiemeTest";
-
         for (var i = 0; i < parentSelect.length; i++) {
           if (parentSelect.options[i].innerHTML == this.innerHTML) {
             parentSelect.selectedIndex = i;
@@ -103,7 +90,6 @@ class PhotographerGalleryFilter {
               this.getAttribute("data-value")
             );
 
-            selectedFilter = selected.getAttribute("data-value");
             var sameAsSelected = this.parentNode.querySelector(
               ".photographer-gallery-filter--same-as-selected"
             );
@@ -113,23 +99,15 @@ class PhotographerGalleryFilter {
               "photographer-gallery-filter--same-as-selected"
             );
 
+            FilterObject.filterMedias(selected.getAttribute("data-value"));
+
             break;
           }
         }
-
-        // HOW TO USE THIS FILTERMEDIAS METHOD INTO THIS METHOD ?
-        return selectedFilter;
       });
 
-      console.log(selectedFilter);
-      this.filterMedias(selectedFilter);
       optionsDiv.appendChild(optionDiv);
     }
-
-    var test = document.querySelector(
-      "#photographer-gallery-filter__select--selected"
-    );
-    console.log(test);
 
     selectWrapper.appendChild(optionsDiv);
     selectDiv.addEventListener("click", function (e) {
@@ -197,7 +175,6 @@ class PhotographerGalleryFilter {
     `;
 
     this.filterFormWrapper.innerHTML = itemContent;
-    this.onChangeFilter();
 
     return this.filterFormWrapper;
   }
