@@ -16,5 +16,5 @@ const hideLoadingSpinner = () => {
   }
 };
 
-// hideLoadingSpinner();
-setTimeout(hideLoadingSpinner, 2000);
+hideLoadingSpinner();
+// setTimeout(hideLoadingSpinner, 2000);

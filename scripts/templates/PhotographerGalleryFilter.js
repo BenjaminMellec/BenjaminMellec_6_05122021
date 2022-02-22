@@ -3,15 +3,13 @@ class PhotographerGalleryFilter {
     this.Medias = Medias;
     this.totalLikes = totalLikes;
 
-    this.filterValue;
-
     this.mainSection = document.querySelector("#main");
     this.galleryWrapper = document.createElement("section");
     this.filterFormWrapper = document.createElement("section");
   }
 
   async filterMedias(selectedFilter) {
-    this.clearGalleryWrapper();
+    this.galleryWrapper.innerHTML = "";
 
     if (selectedFilter === "date") {
       this.Medias.sort(function (a, b) {
@@ -35,21 +33,9 @@ class PhotographerGalleryFilter {
     likesIncrementation(this.totalLikes);
   }
 
-  onChangeFilter() {
-    this.filterFormWrapper
-      .querySelector("#filter")
-      .addEventListener("change", (event) => {
-        const selectedFilter = event.target.value;
-        this.filterMedias(selectedFilter);
-      });
-  }
-
-  clearGalleryWrapper() {
-    this.galleryWrapper.innerHTML = "";
-  }
-
   customizeSelect() {
     // Solution inspired from w3schools https://www.w3schools.com/howto/howto_custom_select.asp
+    let FilterObject = this;
     var selectWrapper = document.querySelector(
       ".photographer-gallery-filter__select"
     );
@@ -72,6 +58,8 @@ class PhotographerGalleryFilter {
     );
     optionsDiv.setAttribute("role", "listbox");
 
+    this.filterMedias(this.selectedFilter);
+
     for (var j = 0; j < selectLength; j++) {
       /* For each option in the original select element, create a new DIV that will act as an option item: */
       var optionDiv = document.createElement("DIV");
@@ -93,12 +81,14 @@ class PhotographerGalleryFilter {
         var parentSelect = this.parentNode.parentNode.querySelector("select");
         var selected = this.parentNode.previousSibling;
 
-        this.filterValue = this.getAttribute("data-value");
-
         for (var i = 0; i < parentSelect.length; i++) {
           if (parentSelect.options[i].innerHTML == this.innerHTML) {
             parentSelect.selectedIndex = i;
             selected.innerHTML = this.innerHTML;
+            selected.setAttribute(
+              "data-value",
+              this.getAttribute("data-value")
+            );
 
             var sameAsSelected = this.parentNode.querySelector(
               ".photographer-gallery-filter--same-as-selected"
@@ -108,14 +98,17 @@ class PhotographerGalleryFilter {
               "class",
               "photographer-gallery-filter--same-as-selected"
             );
+
+            FilterObject.filterMedias(selected.getAttribute("data-value"));
+
             break;
           }
         }
-        selected.click();
-        return this.filterValue;
       });
+
       optionsDiv.appendChild(optionDiv);
     }
+
     selectWrapper.appendChild(optionsDiv);
     selectDiv.addEventListener("click", function (e) {
       /* When the select box is clicked, close any other select boxes, and open/close the current select box: */
@@ -182,7 +175,6 @@ class PhotographerGalleryFilter {
     `;
 
     this.filterFormWrapper.innerHTML = itemContent;
-    this.onChangeFilter();
 
     return this.filterFormWrapper;
   }
