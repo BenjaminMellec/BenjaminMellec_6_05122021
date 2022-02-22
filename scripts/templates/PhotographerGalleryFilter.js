@@ -3,8 +3,6 @@ class PhotographerGalleryFilter {
     this.Medias = Medias;
     this.totalLikes = totalLikes;
 
-    this.filterValue;
-
     this.mainSection = document.querySelector("#main");
     this.galleryWrapper = document.createElement("section");
     this.filterFormWrapper = document.createElement("section");
@@ -50,6 +48,7 @@ class PhotographerGalleryFilter {
 
   customizeSelect() {
     // Solution inspired from w3schools https://www.w3schools.com/howto/howto_custom_select.asp
+    var selectedFilter = "test";
     var selectWrapper = document.querySelector(
       ".photographer-gallery-filter__select"
     );
@@ -93,13 +92,18 @@ class PhotographerGalleryFilter {
         var parentSelect = this.parentNode.parentNode.querySelector("select");
         var selected = this.parentNode.previousSibling;
 
-        this.filterValue = this.getAttribute("data-value");
+        selectedFilter = "deuxiemeTest";
 
         for (var i = 0; i < parentSelect.length; i++) {
           if (parentSelect.options[i].innerHTML == this.innerHTML) {
             parentSelect.selectedIndex = i;
             selected.innerHTML = this.innerHTML;
+            selected.setAttribute(
+              "data-value",
+              this.getAttribute("data-value")
+            );
 
+            selectedFilter = selected.getAttribute("data-value");
             var sameAsSelected = this.parentNode.querySelector(
               ".photographer-gallery-filter--same-as-selected"
             );
@@ -108,14 +112,25 @@ class PhotographerGalleryFilter {
               "class",
               "photographer-gallery-filter--same-as-selected"
             );
+
             break;
           }
         }
-        selected.click();
-        return this.filterValue;
+
+        // HOW TO USE THIS FILTERMEDIAS METHOD INTO THIS METHOD ?
+        return selectedFilter;
       });
+
+      console.log(selectedFilter);
+      this.filterMedias(selectedFilter);
       optionsDiv.appendChild(optionDiv);
     }
+
+    var test = document.querySelector(
+      "#photographer-gallery-filter__select--selected"
+    );
+    console.log(test);
+
     selectWrapper.appendChild(optionsDiv);
     selectDiv.addEventListener("click", function (e) {
       /* When the select box is clicked, close any other select boxes, and open/close the current select box: */
