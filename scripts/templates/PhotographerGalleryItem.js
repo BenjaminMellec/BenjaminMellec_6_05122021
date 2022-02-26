@@ -7,6 +7,7 @@ class PhotographerGalleryItem {
     this.galleryItem = document.createElement("li");
   }
 
+  // Display the modal by clicking on a gallery item
   showModal() {
     this.galleryItem.querySelector("a").addEventListener("click", (e) => {
       e.preventDefault();

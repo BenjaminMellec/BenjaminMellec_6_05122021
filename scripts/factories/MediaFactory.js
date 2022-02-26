@@ -1,3 +1,4 @@
+// Factory to use the good assets
 class MediaFactory {
   constructor(media, type) {
     this.media = media;

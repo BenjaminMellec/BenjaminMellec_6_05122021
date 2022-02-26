@@ -10,6 +10,7 @@ class PhotographerGalleryLightbox {
     document.addEventListener("keydown", this.onKeyDown);
   }
 
+  // Close the lightbox
   onCloseButton() {
     let cross = this.lightbox.querySelector("#gallery_lightbox_close");
     cross.addEventListener("click", () => {
@@ -22,6 +23,7 @@ class PhotographerGalleryLightbox {
     });
   }
 
+  // Navigate through medias using keyboard arrows
   onKeyDown(e) {
     if (e.key === "ArrowLeft") {
       this.previous(e);
@@ -30,6 +32,7 @@ class PhotographerGalleryLightbox {
     }
   }
 
+  // Navigate through medias by clicking on the lightbox arrows
   onClickArrows() {
     let arrows = this.lightbox.querySelectorAll(
       ".photographer-gallery-lightbox__arrow"
@@ -86,6 +89,7 @@ class PhotographerGalleryLightbox {
     }
   }
 
+  // Create the lightbox template
   createMediaTemplate(media) {
     let lightboxTemplate;
     let lightboxMedia;

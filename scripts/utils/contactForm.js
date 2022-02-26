@@ -1,4 +1,5 @@
-function displayModal() {
+// Display the form modal by clicking on the button
+const displayModal = () => {
   const body = document.querySelector("body");
   const modal = document.getElementById("contact_modal");
   const submitButton = document.getElementById("submit_button");
@@ -21,12 +22,13 @@ function displayModal() {
       }
     });
   });
-}
+};
 
-function closeModal() {
+// Hide the form modal by clicking on the cross
+const closeModal = () => {
   const body = document.querySelector("body");
   const modal = document.getElementById("contact_modal");
 
   modal.style.display = "none";
   body.style.overflow = "auto";
-}
+};

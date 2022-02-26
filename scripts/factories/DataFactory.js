@@ -1,3 +1,4 @@
+// Factory to use the good constructor pattern
 class DataFactory {
   constructor(data, type) {
     if (type === "photographer") {

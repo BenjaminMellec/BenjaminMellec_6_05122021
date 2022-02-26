@@ -36,13 +36,13 @@ class PhotographerGalleryFilter {
   customizeSelect() {
     // Solution inspired from w3schools https://www.w3schools.com/howto/howto_custom_select.asp
     let FilterObject = this;
-    var selectWrapper = document.querySelector(
+    let selectWrapper = document.querySelector(
       ".photographer-gallery-filter__select"
     );
-    var select = selectWrapper.getElementsByTagName("select")[0];
-    var selectLength = select.length;
+    let select = selectWrapper.getElementsByTagName("select")[0];
+    let selectLength = select.length;
     /* Create a new DIV that will act as the selected item: */
-    var selectDiv = document.createElement("button");
+    let selectDiv = document.createElement("button");
     selectDiv.setAttribute(
       "class",
       "photographer-gallery-filter__select--selected"
@@ -51,7 +51,7 @@ class PhotographerGalleryFilter {
     selectWrapper.appendChild(selectDiv);
 
     /* For each element, create a new DIV that will contain the option list: */
-    var optionsDiv = document.createElement("DIV");
+    let optionsDiv = document.createElement("DIV");
     optionsDiv.setAttribute(
       "class",
       "photographer-gallery-filter__select-items photographer-gallery-filter__select--hide"
@@ -60,9 +60,9 @@ class PhotographerGalleryFilter {
 
     this.filterMedias(this.selectedFilter);
 
-    for (var j = 0; j < selectLength; j++) {
+    for (let j = 0; j < selectLength; j++) {
       /* For each option in the original select element, create a new DIV that will act as an option item: */
-      var optionDiv = document.createElement("DIV");
+      let optionDiv = document.createElement("DIV");
       optionDiv.setAttribute("role", "option");
       optionDiv.setAttribute(
         "data-value",
@@ -78,10 +78,10 @@ class PhotographerGalleryFilter {
 
       optionDiv.addEventListener("click", function (e) {
         /* When an item is clicked, update the original select box, and the selected item: */
-        var parentSelect = this.parentNode.parentNode.querySelector("select");
-        var selected = this.parentNode.previousSibling;
+        let parentSelect = this.parentNode.parentNode.querySelector("select");
+        let selected = this.parentNode.previousSibling;
 
-        for (var i = 0; i < parentSelect.length; i++) {
+        for (let i = 0; i < parentSelect.length; i++) {
           if (parentSelect.options[i].innerHTML == this.innerHTML) {
             parentSelect.selectedIndex = i;
             selected.innerHTML = this.innerHTML;
@@ -90,7 +90,7 @@ class PhotographerGalleryFilter {
               this.getAttribute("data-value")
             );
 
-            var sameAsSelected = this.parentNode.querySelector(
+            let sameAsSelected = this.parentNode.querySelector(
               ".photographer-gallery-filter--same-as-selected"
             );
             sameAsSelected.removeAttribute("class");
@@ -123,19 +123,19 @@ class PhotographerGalleryFilter {
       );
     });
 
-    function closeAllSelect(elmnt) {
+    const closeAllSelect = (elmnt) => {
       /* A function that will close all select boxes in the document, except the current select box: */
-      var arrNo = [];
-      var selectItems = document.getElementsByClassName(
+      let arrNo = [];
+      let selectItems = document.getElementsByClassName(
         "photographer-gallery-filter__select-items"
       );
-      var selected = document.getElementsByClassName(
+      let selected = document.getElementsByClassName(
         "photographer-gallery-filter__select--selected"
       );
-      var selectItemsLength = selectItems.length;
-      var selectedLength = selected.length;
+      let selectItemsLength = selectItems.length;
+      let selectedLength = selected.length;
 
-      for (var i = 0; i < selectedLength; i++) {
+      for (let i = 0; i < selectedLength; i++) {
         if (elmnt == selected[i]) {
           arrNo.push(i);
         } else {
@@ -144,14 +144,14 @@ class PhotographerGalleryFilter {
           );
         }
       }
-      for (i = 0; i < selectItemsLength; i++) {
+      for (let i = 0; i < selectItemsLength; i++) {
         if (arrNo.indexOf(i)) {
           selectItems[i].classList.add(
             "photographer-gallery-filter__select--hide"
           );
         }
       }
-    }
+    };
 
     /* If the user clicks anywhere outside the select box, then close all select boxes: */
     document.addEventListener("click", closeAllSelect);
@@ -160,7 +160,7 @@ class PhotographerGalleryFilter {
   createPhotographerGalleryFilter() {
     const galleryWrapper = document.createElement("section");
     galleryWrapper.classList.add("gallery-wrapper");
-
+    // Create the default select that will be replaced
     const itemContent = `
       <form class="photographer-gallery-filter">
         <label for="filter">Trier par</label>
