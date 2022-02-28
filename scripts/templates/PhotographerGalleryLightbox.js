@@ -2,7 +2,7 @@ class PhotographerGalleryLightbox {
   constructor(currentMedia, medias) {
     this.body = document.querySelector("body");
     this.main = document.querySelector("main");
-    this.lightbox = document.createElement("section");
+    this.lightbox = document.createElement("dialog");
     this.currentMedia = currentMedia;
     this.medias = medias;
 
@@ -58,14 +58,7 @@ class PhotographerGalleryLightbox {
 
     if (index > 0) {
       this.currentMedia = this.medias[index - 1];
-      if (index === 1) {
-        this.createMediaTemplate(this.currentMedia);
-        this.lightbox.querySelector(
-          ".photographer-gallery-lightbox__arrow--left"
-        ).style.display = "none";
-      } else if (index > 1) {
-        this.createMediaTemplate(this.currentMedia);
-      }
+      this.createMediaTemplate(this.currentMedia);
     }
   }
 
@@ -77,15 +70,7 @@ class PhotographerGalleryLightbox {
 
     if (index < this.medias.length - 1) {
       this.currentMedia = this.medias[index + 1];
-
-      if (index === this.medias.length - 2) {
-        this.createMediaTemplate(this.currentMedia);
-        this.lightbox.querySelector(
-          ".photographer-gallery-lightbox__arrow--right"
-        ).style.display = "none";
-      } else {
-        this.createMediaTemplate(this.currentMedia);
-      }
+      this.createMediaTemplate(this.currentMedia);
     }
   }
 
@@ -134,6 +119,16 @@ class PhotographerGalleryLightbox {
     let video = this.lightbox.querySelector("video");
     if (video) {
       video.setAttribute("controls", "true");
+    }
+
+    if (media.id === this.medias[0].id) {
+      this.lightbox.querySelector(
+        ".photographer-gallery-lightbox__arrow--left"
+      ).style.display = "none";
+    } else if (media.id === this.medias[this.medias.length - 1].id) {
+      this.lightbox.querySelector(
+        ".photographer-gallery-lightbox__arrow--right"
+      ).style.display = "none";
     }
 
     this.onCloseButton();

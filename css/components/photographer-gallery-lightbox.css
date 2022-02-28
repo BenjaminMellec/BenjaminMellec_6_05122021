@@ -1,4 +1,5 @@
 .photographer-gallery-lightbox {
+  display: block;
   visibility: hidden;
   position: fixed;
   top: 0;

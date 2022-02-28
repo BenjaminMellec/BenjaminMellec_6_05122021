@@ -4,14 +4,14 @@ class PhotographerContactModal {
   }
 
   createPhotographerContactModal() {
-    const contactModal = document.createElement("div");
+    const contactModal = document.createElement("dialog");
     contactModal.setAttribute("id", "contact_modal");
     contactModal.setAttribute("class", "photographer-contact-modal");
 
     const modalContent = `
       <div class="photographer-contact-modal__container">
         <header>
-          <h2><span>Contactez-moi </span><span>${this.name}</span></h2>
+          <h2><span>Contactez-moi</span><span>${this.name}</span></h2>
           <img src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
         <form>

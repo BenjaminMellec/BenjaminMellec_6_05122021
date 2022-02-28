@@ -27,6 +27,7 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  padding: 0;
 }
 .photographer-contact-modal__container header img {
   margin-top: 20px;
