@@ -42,16 +42,19 @@ class PhotographerGalleryFilter {
     let select = selectWrapper.getElementsByTagName("select")[0];
     let selectLength = select.length;
     /* Create a new DIV that will act as the selected item: */
-    let selectDiv = document.createElement("button");
-    selectDiv.setAttribute(
+    let selectButton = document.createElement("button");
+    selectButton.setAttribute(
       "class",
       "photographer-gallery-filter__select--selected"
     );
-    selectDiv.innerHTML = select.options[select.selectedIndex].innerHTML;
-    selectWrapper.appendChild(selectDiv);
+    selectButton.setAttribute("role", "button");
+    selectButton.setAttribute("aria-haspopup", "listbox");
+    selectButton.setAttribute("aria-expanded", "false");
+    selectButton.innerHTML = select.options[select.selectedIndex].innerHTML;
+    selectWrapper.appendChild(selectButton);
 
     /* For each element, create a new DIV that will contain the option list: */
-    let optionsDiv = document.createElement("DIV");
+    let optionsDiv = document.createElement("ul");
     optionsDiv.setAttribute(
       "class",
       "photographer-gallery-filter__select-items photographer-gallery-filter__select--hide"
@@ -62,15 +65,16 @@ class PhotographerGalleryFilter {
 
     for (let j = 0; j < selectLength; j++) {
       /* For each option in the original select element, create a new DIV that will act as an option item: */
-      let optionDiv = document.createElement("DIV");
+      let optionDiv = document.createElement("li");
       optionDiv.setAttribute("role", "option");
       optionDiv.setAttribute(
         "data-value",
         select.options[j].innerHTML.toLowerCase()
       );
+      optionDiv.setAttribute("id", select.options[j].innerHTML.toLowerCase());
       optionDiv.innerHTML = select.options[j].innerHTML;
 
-      if (optionDiv.innerHTML === selectDiv.innerHTML) {
+      if (optionDiv.innerHTML === selectButton.innerHTML) {
         optionDiv.classList.add(
           "photographer-gallery-filter--same-as-selected"
         );
@@ -110,17 +114,29 @@ class PhotographerGalleryFilter {
     }
 
     selectWrapper.appendChild(optionsDiv);
-    selectDiv.addEventListener("click", function (e) {
+    selectButton.addEventListener("click", function (e) {
       /* When the select box is clicked, close any other select boxes, and open/close the current select box: */
       e.preventDefault();
       e.stopPropagation();
       closeAllSelect(this);
+
       this.nextSibling.classList.toggle(
         "photographer-gallery-filter__select--hide"
       );
       this.classList.toggle(
         "photographer-gallery-filter__select-arrow--active"
       );
+
+      // Toggle the aria-expanded attribute
+      if (
+        this.classList.contains(
+          "photographer-gallery-filter__select-arrow--active"
+        )
+      ) {
+        this.setAttribute("aria-expanded", "true");
+      } else {
+        this.setAttribute("aria-expanded", "false");
+      }
     });
 
     const closeAllSelect = (elmnt) => {
@@ -134,6 +150,8 @@ class PhotographerGalleryFilter {
       );
       let selectItemsLength = selectItems.length;
       let selectedLength = selected.length;
+
+      selected[0].setAttribute("aria-expanded", "false");
 
       for (let i = 0; i < selectedLength; i++) {
         if (elmnt == selected[i]) {

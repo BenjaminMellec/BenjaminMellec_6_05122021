@@ -30,7 +30,7 @@
 .photographer-gallery-filter__select--selected.photographer-gallery-filter__select-arrow--active:after {
   transform: rotate(180deg) translateY(50%);
 }
-.photographer-gallery-filter__select-items div,
+.photographer-gallery-filter__select-items li,
 .photographer-gallery-filter__select--selected {
   position: relative;
   color: #ffffff;
@@ -58,14 +58,14 @@
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
-.photographer-gallery-filter__select-items div {
+.photographer-gallery-filter__select-items li {
   border-radius: 5px;
 }
-.photographer-gallery-filter__select-items div {
+.photographer-gallery-filter__select-items li {
   position: relative;
   padding: 20px;
 }
-.photographer-gallery-filter__select-items div::before {
+.photographer-gallery-filter__select-items li::before {
   content: "";
   position: absolute;
   top: 0;
