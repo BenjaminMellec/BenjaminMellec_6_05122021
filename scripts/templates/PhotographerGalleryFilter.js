@@ -72,6 +72,7 @@ class PhotographerGalleryFilter {
         select.options[j].innerHTML.toLowerCase()
       );
       optionDiv.setAttribute("id", select.options[j].innerHTML.toLowerCase());
+      optionDiv.setAttribute("tabindex", "0");
       optionDiv.innerHTML = select.options[j].innerHTML;
 
       if (optionDiv.innerHTML === selectButton.innerHTML) {
@@ -80,7 +81,7 @@ class PhotographerGalleryFilter {
         );
       }
 
-      optionDiv.addEventListener("click", function (e) {
+      function updateItemsList() {
         /* When an item is clicked, update the original select box, and the selected item: */
         let parentSelect = this.parentNode.parentNode.querySelector("select");
         let selected = this.parentNode.previousSibling;
@@ -108,8 +109,9 @@ class PhotographerGalleryFilter {
             break;
           }
         }
-      });
+      }
 
+      optionDiv.addEventListener("click", updateItemsList);
       optionsDiv.appendChild(optionDiv);
     }
 

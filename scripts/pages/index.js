@@ -15,6 +15,7 @@ class Index {
       .map((photographer) => new DataFactory(photographer, "photographer"))
       .forEach((photographer) => {
         const Template = new PhotographerCard(photographer);
+        console.log(Template);
         photographersSection.appendChild(Template.createPhotographerCard());
         this.mainSection.appendChild(photographersSection);
       });

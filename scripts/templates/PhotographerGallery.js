@@ -7,10 +7,10 @@ class PhotographerGallery {
     const galleryList = document.createElement("ul");
     galleryList.classList.add("photographer-gallery");
 
-    this.medias.forEach((media) => {
+    for (let media of this.medias) {
       const item = new PhotographerGalleryItem(media, this.medias);
       galleryList.appendChild(item.createPhotographerGalleryItem());
-    });
+    }
 
     return galleryList;
   }

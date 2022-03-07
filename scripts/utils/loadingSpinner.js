@@ -9,6 +9,7 @@ if (loadingSpinner.classList.contains("loading-spinner__container--visible")) {
 const hideLoadingSpinner = () => {
   if ((loadingSpinner.style.opacity = 1)) {
     loadingSpinner.style.opacity = 0;
+    loadingSpinner.setAttribute("aria-busy", false);
     body.style.overflow = "auto";
     setTimeout(() => {
       loadingSpinner.style.visibility = "hidden";

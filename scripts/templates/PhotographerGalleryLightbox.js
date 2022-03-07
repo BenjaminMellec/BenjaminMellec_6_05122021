@@ -29,6 +29,13 @@ class PhotographerGalleryLightbox {
       this.previous(e);
     } else if (e.key === "ArrowRight") {
       this.next(e);
+    } else if (e.key === "Escape") {
+      this.lightbox.classList.remove("photographer-gallery-lightbox--visible");
+      // Remove lightbox from the DOM after the opacity transition
+      setTimeout(() => {
+        this.lightbox.remove();
+      }, 300);
+      this.body.style.overflow = "auto";
     }
   }
 
@@ -86,6 +93,7 @@ class PhotographerGalleryLightbox {
     );
     this.lightbox.ariaLabel = "image closeup view";
     this.lightbox.setAttribute("id", "gallery_lightbox");
+    this.lightbox.setAttribute("role", "dialog");
     this.body.style.overflow = "hidden";
 
     if (media.image) {

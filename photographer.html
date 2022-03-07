@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8" />
@@ -15,7 +15,7 @@
     />
   </head>
   <body>
-    <header class="header">
+    <header class="header" role="banner">
       <a href="index.html">
         <img
           src="assets/images/logo.png"
@@ -25,13 +25,14 @@
       </a>
     </header>
 
-    <main id="main"></main>
+    <main id="main" aria-hidden="false"></main>
 
     <div
       id="loading_spinner"
       class="loading-spinner__container loading-spinner__container--visible"
-      role="alert"
-      aria-live="assertive"
+      role="progressbar"
+      aria-busy="true"
+      aria-live="polite"
     >
       <div class="loading-spinner">
         <div></div>

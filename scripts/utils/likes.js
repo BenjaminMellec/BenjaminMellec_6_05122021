@@ -6,11 +6,20 @@ async function likesIncrementation(totalLikes) {
   totalCounter.innerHTML = totalLikes;
 
   Array.from(likeButtons).forEach((likeButton) => {
+    function incrementation(previousElement, likesNumber) {
+      previousElement.innerHTML = likesNumber += 1;
+      totalCounter.innerHTML = totalLikes += 1;
+    }
+
     likeButton.addEventListener("click", function (event) {
       let likesNumber = parseInt(this.previousElementSibling.innerHTML);
-
-      this.previousElementSibling.innerHTML = likesNumber += 1;
-      totalCounter.innerHTML = totalLikes += 1;
+      incrementation(this.previousElementSibling, likesNumber);
+    });
+    likeButton.addEventListener("keydown", function (event) {
+      if (event.key === "Enter") {
+        let likesNumber = parseInt(this.previousElementSibling.innerHTML);
+        incrementation(this.previousElementSibling, likesNumber);
+      }
     });
   });
 }
