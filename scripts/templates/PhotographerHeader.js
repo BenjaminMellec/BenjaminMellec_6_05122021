@@ -22,7 +22,7 @@ class PhotographerHeader {
           </p>
         </div>
         <div class="photographer-header__contact">
-          <button class="button" onclick="displayModal()">
+          <button id="open_contact_form" class="button" onclick="displayModal()">
             Contactez-moi
           </button>
         </div>

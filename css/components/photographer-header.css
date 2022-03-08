@@ -31,7 +31,8 @@
   line-height: 23px;
   color: var(--text-secondary);
 }
-.photographer-header__infos-title {
+.photographer-header__contact button {
+  margin: auto;
 }
 .photographer-header__avatar {
   text-align: right;

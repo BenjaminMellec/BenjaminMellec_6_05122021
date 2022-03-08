@@ -14,7 +14,7 @@ class PhotographerContactModal {
       <div class="photographer-contact-modal__container">
         <header>
           <h1 id="form_title"><span>Contactez-moi</span><span>${this.name}</span></h1>
-          <button onclick="closeModal()">
+          <button id="close_contact_form" onclick="closeModal()">
             <img src="assets/icons/close.svg" />
           </button>
         </header>

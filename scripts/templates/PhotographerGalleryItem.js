@@ -20,6 +20,9 @@ class PhotographerGalleryItem {
         Lightbox.createMediaTemplate(this.media),
         Lightbox.onClickArrows
       );
+
+      // Add the focus on the cross when the modal is opened
+      document.querySelector("#gallery_lightbox_close").focus();
     });
   }
 

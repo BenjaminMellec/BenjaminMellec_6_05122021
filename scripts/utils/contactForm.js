@@ -9,6 +9,7 @@ const displayModal = () => {
   main.setAttribute("aria-hidden", "true");
   modal.style.display = "block";
   modal.setAttribute("aria-hidden", "false");
+  modal.querySelector("#close_contact_form").focus();
 
   // Close the modal by hitting Escape button
   if ((modal.style.display = "block")) {
@@ -46,4 +47,5 @@ const closeModal = () => {
   modal.style.display = "none";
   main.setAttribute("aria-hidden", "false");
   body.style.overflow = "auto";
+  main.querySelector("#open_contact_form").focus();
 };
