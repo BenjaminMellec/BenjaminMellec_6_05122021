@@ -81,25 +81,26 @@ class PhotographerGalleryFilter {
         );
       }
 
-      function updateItemsList() {
+      const updateItemsList = (clickedItem) => {
         /* When an item is clicked, update the original select box, and the selected item: */
-        let parentSelect = this.parentNode.parentNode.querySelector("select");
-        let selected = this.parentNode.previousSibling;
+        let parentSelect =
+          clickedItem.parentNode.parentNode.querySelector("select");
+        let selected = clickedItem.parentNode.previousSibling;
 
         for (let i = 0; i < parentSelect.length; i++) {
-          if (parentSelect.options[i].innerHTML == this.innerHTML) {
+          if (parentSelect.options[i].innerHTML == clickedItem.innerHTML) {
             parentSelect.selectedIndex = i;
-            selected.innerHTML = this.innerHTML;
+            selected.innerHTML = clickedItem.innerHTML;
             selected.setAttribute(
               "data-value",
-              this.getAttribute("data-value")
+              clickedItem.getAttribute("data-value")
             );
 
-            let sameAsSelected = this.parentNode.querySelector(
+            let sameAsSelected = clickedItem.parentNode.querySelector(
               ".photographer-gallery-filter--same-as-selected"
             );
             sameAsSelected.removeAttribute("class");
-            this.setAttribute(
+            clickedItem.setAttribute(
               "class",
               "photographer-gallery-filter--same-as-selected"
             );
@@ -109,9 +110,17 @@ class PhotographerGalleryFilter {
             break;
           }
         }
-      }
+      };
 
-      optionDiv.addEventListener("click", updateItemsList);
+      // optionDiv.addEventListener("click", updateItemsList);
+      optionDiv.addEventListener("click", function (e) {
+        updateItemsList(this);
+      });
+      optionDiv.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+          updateItemsList(this);
+        }
+      });
       optionsDiv.appendChild(optionDiv);
     }
 
@@ -138,6 +147,18 @@ class PhotographerGalleryFilter {
         this.setAttribute("aria-expanded", "true");
       } else {
         this.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") {
+        selectButton.classList.remove(
+          "photographer-gallery-filter__select-arrow--active"
+        );
+        selectButton.nextSibling.classList.add(
+          "photographer-gallery-filter__select--hide"
+        );
+        selectButton.setAttribute("aria-expanded", "false");
       }
     });
 
