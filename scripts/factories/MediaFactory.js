@@ -18,7 +18,7 @@ class MediaFactory {
         </video>
       `;
     } else {
-      throw "This media is not an image";
+      throw "This media has an unknown type";
     }
   }
 }
