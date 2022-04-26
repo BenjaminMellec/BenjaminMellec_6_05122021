@@ -47,7 +47,7 @@ class PhotographerGalleryItem {
             <h2>${this.media.title}</h2>
             <div class="photographer-gallery__item-content-likes">
               <p class="photographer-gallery__item-content-likes-number">${this.likes}</p>
-              <img class="photographer-gallery__item-content-likes-button" src="assets/icons/heart-red.svg" alt="likes" tabindex="0"/>
+              <button class="photographer-gallery__item-content-likes-button"><img src="assets/icons/heart-red.svg" alt="likes" /></button>
             </div>
           </div>
         </article>
